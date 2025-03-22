@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Blog - Home</title>
+    <title>College Blog - Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -16,7 +16,7 @@
             background-color: #b8860b;
         }
         .navbar a {
-            color: white;
+            color: white !important;
             font-size: 20px;
         }
         .hero {
@@ -47,9 +47,49 @@
             background-color: #f8f9fa;
             font-size: 16px;
         }
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 999; 
+            padding-top: 100px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            z-index: 1000;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <script>
+        if (!sessionStorage.getItem('loggedIn')) {
+            window.location.href = '1.html';
+        }
+    </script>
+
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand text-white" href="#">
@@ -60,10 +100,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="3.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="4.html">Topics</a></li>
-                    <li class="nav-item"><a class="nav-link" href="5.html">Write a Blog</a></li>
+                    <li class="nav-item" title="About the College"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item" title="View Topics"><a class="nav-link" href="topics.html">Topics</a></li>
+                    <li class="nav-item" title="Write your Blog"><a class="nav-link" href="blog.html">Write a Blog</a></li>
                 </ul>
             </div>
         </div>
@@ -81,5 +120,25 @@
     <footer class="footer">
         <p>&copy; 2025 College Blog. All rights reserved.</p>
     </footer>
+
+    <!-- Modal for Announcement -->
+    <div id="announcementModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('announcementModal').style.display='none'">&times;</span>
+            <h2>Announcement</h2>
+            <p>New blogging competition coming soon! Stay tuned!</p>
+        </div>
+    </div>
+
+    <script>
+        // Display modal after delay
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('announcementModal').style.display = 'block';
+            }, 1500);
+        }
+    </script>
+
 </body>
 </html>
+
